@@ -37,6 +37,12 @@ const testQuantityValues = () => {
       $values.classList.remove('ERROR')
     }
   })
+
+  $values.addEventListener('blur', () => {
+    if ($values.value) return;
+    $values.classList.remove('ERROR')
+    $values.classList.remove('OK')
+  })
 }
 
 const getArrayLength = (array, seeJumps) => {
@@ -65,8 +71,6 @@ $buttonProcess.addEventListener("click", () => {
   const column = $column.value
   const input = $input.value
   const output = $output.value
-  
-  
   
   let count = 0
   
