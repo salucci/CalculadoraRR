@@ -2,6 +2,15 @@ import dictionary from "./src/modules/dic.js"
 
 const $buttonProcess = document.querySelector(".button-process")
 const $invertButton = document.querySelector('.invert-button')
+const $fieldList = document.querySelectorAll('textarea')
+
+const autoSelecTextArea = () => {
+  $fieldList.forEach($field => {
+    $field.addEventListener('click', () => {
+      $field.select();
+    })
+  })
+}
 
 $buttonProcess.addEventListener("click", () => {
   const $input = document.querySelector(".input")
@@ -50,3 +59,5 @@ $invertButton.addEventListener('click', () => {
   $input.value = $values.value;
   $values.value = '';
 })
+
+autoSelecTextArea();

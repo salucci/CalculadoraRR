@@ -9,14 +9,16 @@
   <body>
     <main class="container" style="display: flex; flex-direction: column">
       <textarea class="input" placeholder="Input"></textarea>
-      <button class="invert-button"><i class="fas fa-exchange-alt"></i></button>
       <textarea class="values" placeholder="Valores"></textarea>
       <div class="wrapper-input">
         <input class="start-index" placeholder="Index inicial" value="0" />
         <input class="jump" placeholder="Pulos" value="5" />
         <input class="column" placeholder="Coluna" />
       </div>
-      <button class="button-process">Processar</button>
+      <div class='button-wrapper'>
+        <button class="button-process">Processar</button>
+        <button class="invert-button"><i class="fas fa-exchange-alt"></i></button>
+      </div>
       <textarea class="output" placeholder="Output"></textarea>
     </main>
     
