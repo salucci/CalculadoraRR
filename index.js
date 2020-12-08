@@ -3,6 +3,8 @@ import dictionary from "./src/modules/dic.js"
 const $buttonProcess = document.querySelector(".button-process")
 const $invertButton = document.querySelector('.invert-button')
 const $fieldList = document.querySelectorAll('textarea')
+const $values = document.querySelector(".values")
+
 
 const autoSelecTextArea = () => {
   $fieldList.forEach($field => {
@@ -10,6 +12,43 @@ const autoSelecTextArea = () => {
       $field.select();
     })
   })
+}
+
+const getInputArray = (string) => {
+  return string?.split('\n')
+}
+
+const testQuantityValues = () => {
+  $values.addEventListener('keyup', () => {
+    const $values = document.querySelector(".values")
+    const values = $values.value
+    const inputValye = document.querySelector('.input').value
+  
+    if (!values) return;
+  
+    const valueArray = getArrayLength(getInputArray(values), false)
+    const inputArray = getArrayLength(getInputArray(inputValye), true) 
+  
+    if (valueArray !== inputArray) {
+      $values.classList.add('ERROR')
+      $values.classList.remove('OK')
+    } else{
+      $values.classList.add('OK')
+      $values.classList.remove('ERROR')
+    }
+  })
+}
+
+const getArrayLength = (array, seeJumps) => {
+  const startIndex = parseInt(document.querySelector('.start-index').value)
+  const jump = parseInt(document.querySelector('.jump').value)
+
+  let length = 0
+
+  for(let i = startIndex; i < array.length; seeJumps ? i = i + jump : i++) {
+    length++
+  }
+  return length
 }
 
 $buttonProcess.addEventListener("click", () => {
@@ -26,13 +65,18 @@ $buttonProcess.addEventListener("click", () => {
   const column = $column.value
   const input = $input.value
   const output = $output.value
-  const arrayValues = value.split('\n')
-
+  
+  
+  
   let count = 0
+  
+  const array = getInputArray(input)
+  const arrayValues = new Array(getArrayLength(getInputArray(input), true)).fill(value.split('\n')[value.split('\n').length - 1])
 
-  const array = input?.split('\n')
-
-
+  
+  value.split('\n').forEach((item, index) => arrayValues[index] = item);
+  
+  console.log(arrayValues)
   for (let i = startIndex; i < array.length; i += jump) {
     const mob = array[i]
     const indexOfAtribute = dictionary.indexOf(column.toLowerCase())
@@ -60,4 +104,7 @@ $invertButton.addEventListener('click', () => {
   $values.value = '';
 })
 
+
+
 autoSelecTextArea();
+testQuantityValues();

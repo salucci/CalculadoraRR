@@ -16,6 +16,18 @@ input, textarea{
 
 }
 
+
+.OK {
+  border: 2px solid green;
+  outline: none;
+}
+
+.ERROR {
+  border: 2px solid red;
+  outline: none;
+}
+
+
 .wrapper-input{
   display: flex;
   width: 80%;
