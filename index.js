@@ -1,6 +1,7 @@
 import dictionary from "./src/modules/dic.js"
 
 const $buttonProcess = document.querySelector(".button-process")
+const $invertButton = document.querySelector('.invert-button')
 
 $buttonProcess.addEventListener("click", () => {
   const $input = document.querySelector(".input")
@@ -37,5 +38,15 @@ $buttonProcess.addEventListener("click", () => {
   }
 
   $output.value = array.join('\n')
-  console.log(array)
 });
+
+
+$invertButton.addEventListener('click', () => {
+  const $input = document.querySelector(".input")
+  const $values = document.querySelector(".values")
+
+  if (!$values.value) return;
+
+  $input.value = $values.value;
+  $values.value = '';
+})
