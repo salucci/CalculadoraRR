@@ -29,7 +29,7 @@ const testQuantityValues = () => {
     const valueArray = getArrayLength(getInputArray(values), false)
     const inputArray = getArrayLength(getInputArray(inputValye), true) 
   
-    if (valueArray !== inputArray) {
+    if (valueArray < inputArray) {
       $values.classList.add('ERROR')
       $values.classList.remove('OK')
     } else{
@@ -55,7 +55,7 @@ const getArrayLength = (array, seeJumps) => {
     const mob = array[i]
 
     if (!mob) continue
-    
+
     length++
   }
   return length
