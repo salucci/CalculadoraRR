@@ -52,7 +52,7 @@ $buttonProcess.addEventListener("click", () => {
 
 $invertButton.addEventListener('click', () => {
   const $input = document.querySelector(".input")
-  const $values = document.querySelector(".values")
+  const $values = document.querySelector(".output")
 
   if (!$values.value) return;
 
