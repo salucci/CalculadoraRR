@@ -52,6 +52,10 @@ const getArrayLength = (array, seeJumps) => {
   let length = 0
 
   for(let i = startIndex; i < array.length; seeJumps ? i = i + jump : i++) {
+    const mob = array[i]
+
+    if (!mob) continue
+    
     length++
   }
   return length
