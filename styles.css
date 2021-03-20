@@ -49,7 +49,11 @@ main{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #00FFFF;
+  background-color: #000080;
+}
+
+body{
+  background-color: #000080;
 }
 
 textarea {

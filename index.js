@@ -92,9 +92,6 @@ $buttonProcess.addEventListener("click", () => {
 
   var salariodiario = salarioreal * 30 * 6 * parseInt($tempodisp.value)
 
-  alert(salarioreal);
-
-
   var valorenergia = 0
   if ($radioValorFixo.checked == true)
   {
