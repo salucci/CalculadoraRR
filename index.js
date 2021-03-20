@@ -140,7 +140,7 @@ $buttonProcess.addEventListener("click", () => {
 
   var lucroenergia = (recenergia/10) * valorenergia;
 
-  var resultado = "Resultado: </br> Salário 300E (1 hit): $"+salarioreal+ "  Salario Médio Diário: $"+salariodiario+" <br/> Recuperação de energia: "+recenergia+" Valor 10E: $"+valorenergia+" Lucro 10min energia: $"+ lucroenergia+ "<br/>Total: "+(salariodiario+lucroenergia*6*24);
+  var resultado = "Resultado: </br> Salário 10E: $"+salarioreal.toLocaleString()+ " Salário 300E (1 hit): $"+(salarioreal*30).toLocaleString()+ "  Salario Médio Diário: $"+salariodiario.toLocaleString()+" <br/> Recuperação de energia: "+recenergia+" Valor 10E: $"+valorenergia.toLocaleString()+" Lucro 10min energia: $"+ lucroenergia.toLocaleString()+ "<br/>Total: "+(salariodiario+lucroenergia*6*24).toLocaleString();
 
   $result.innerHTML = resultado;
 });
