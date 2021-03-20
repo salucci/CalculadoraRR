@@ -1,118 +1,149 @@
 import dictionary from "./src/modules/dic.js"
 
+const $radioSalarioPerc = document.querySelector("#salarioperc")
+const $radioSalarioFixo = document.querySelector("#salariofixo")
+
+const $radioValorFixo = document.querySelector("#valorfixo")
+const $radioValorCalc = document.querySelector("#valorcalc")
+
+const $salariop = document.querySelector(".salariop")
+const $expatual = document.querySelector(".expatual")
+const $expmax = document.querySelector(".expmax")
+
+const $salariof = document.querySelector(".salariof")
+const $imposto = document.querySelector(".imposto")
+
+const $tempodisp = document.querySelector(".tempodisp")
+const $indexsaude = document.querySelector(".indexsaude")
+
+const $valorenergia = document.querySelector(".valorenergia")
+
+const $qtdrecurso = document.querySelector(".qtdrecurso")
+const $precorecurso = document.querySelector(".precorecurso")
+
 const $buttonProcess = document.querySelector(".button-process")
-const $invertButton = document.querySelector('.invert-button')
-const $fieldList = document.querySelectorAll('textarea')
-const $values = document.querySelector(".values")
 
 
-const autoSelecTextArea = () => {
-  $fieldList.forEach($field => {
-    $field.addEventListener('click', () => {
-      $field.select();
-    })
-  })
-}
+$radioSalarioPerc.addEventListener("click", () => {
+  $salariop.hidden = false;
+  $expatual.hidden = false; 
+  $expmax.hidden = false;
 
-const getInputArray = (string) => {
-  return string?.split('\n')
-}
-
-const testQuantityValues = () => {
-  $values.addEventListener('keyup', () => {
-    const $values = document.querySelector(".values")
-    const values = $values.value
-    const inputValye = document.querySelector('.input').value
-  
-    if (!values) return;
-  
-    const valueArray = getArrayLength(getInputArray(values), false)
-    const inputArray = getArrayLength(getInputArray(inputValye), true) 
-  
-    if (valueArray < inputArray) {
-      $values.classList.add('ERROR')
-      $values.classList.remove('OK')
-    } else{
-      $values.classList.add('OK')
-      $values.classList.remove('ERROR')
-    }
-  })
-
-  $values.addEventListener('blur', () => {
-    if ($values.value) return;
-    $values.classList.remove('ERROR')
-    $values.classList.remove('OK')
-  })
-}
-
-const getArrayLength = (array, seeJumps) => {
-  const startIndex = parseInt(document.querySelector('.start-index').value)
-  const jump = parseInt(document.querySelector('.jump').value)
-
-  let length = 0
-
-  for(let i = startIndex; i < array.length; seeJumps ? i = i + jump : i++) {
-    const mob = array[i]
-
-    if (!mob) continue
-
-    length++
-  }
-  return length
-}
-
-$buttonProcess.addEventListener("click", () => {
-  const $input = document.querySelector(".input")
-  const $values = document.querySelector(".values")
-  const $startValue = document.querySelector(".start-index")
-  const $jump = document.querySelector(".jump")
-  const $column = document.querySelector(".column")
-  const $output = document.querySelector(".output")
-
-  const value = $values.value
-  const startIndex = parseInt($startValue.value)
-  const jump = parseInt($jump.value)
-  const column = $column.value
-  const input = $input.value
-  const output = $output.value
-  
-  let count = 0
-  
-  const array = getInputArray(input)
-  const arrayValues = new Array(getArrayLength(getInputArray(input), true)).fill(value.split('\n')[value.split('\n').length - 1])
-
-  
-  value.split('\n').forEach((item, index) => arrayValues[index] = item);
-  
-  console.log(arrayValues)
-  for (let i = startIndex; i < array.length; i += jump) {
-    const mob = array[i]
-    const indexOfAtribute = dictionary.indexOf(column.toLowerCase())
-    const atribute = mob.split(',')
-
-    atribute[indexOfAtribute] = arrayValues[count]
-    
-    if (!mob) continue
-    
-    array[i] = atribute.join(',')
-    count++
-  }
-
-  $output.value = array.join('\n')
+  $salariof.hidden = true; 
+  $imposto.hidden = true;
 });
 
+$radioSalarioFixo.addEventListener("click", () => {
+  $salariop.hidden = true;
+  $expatual.hidden = true; 
+  $expmax.hidden = true;
 
-$invertButton.addEventListener('click', () => {
-  const $input = document.querySelector(".input")
-  const $values = document.querySelector(".output")
+  $salariof.hidden = false; 
+  $imposto.hidden = false;
+  });
 
-  if (!$values.value) return;
+$radioValorFixo.addEventListener("click", () => {
+    $valorenergia.hidden = false;
+  
+    $qtdrecurso.hidden = true; 
+    $precorecurso.hidden = true;
+  });
+  
+  $radioValorCalc.addEventListener("click", () => {
+    $valorenergia.hidden = true;
+  
+    $qtdrecurso.hidden = false; 
+    $precorecurso.hidden = false;
+    });
 
-  $input.value = $values.value;
-  $values.value = '';
-})
 
 
 
-autoSelecTextArea();
-testQuantityValues();
+$buttonProcess.addEventListener("click", () => {
+  const $salariop = document.querySelector(".salariop")
+  const $expatual = document.querySelector(".expatual")
+  const $expmax = document.querySelector(".expmax")
+  
+  const $salariof = document.querySelector(".salariof")
+  const $imposto = document.querySelector(".imposto")
+  
+  const $tempodisp = document.querySelector(".tempodisp")
+  const $indexsaude = document.querySelector(".indexsaude")
+  
+  const $valorenergia = document.querySelector(".valorenergia")
+
+  const $qtdrecurso = document.querySelector(".qtdrecurso")
+  const $precorecurso = document.querySelector(".precorecurso")
+
+  const $result = document.querySelector("#result")
+
+  var salarioreal = 0;
+
+  if ($radioSalarioPerc.checked == true)
+  {
+  salarioreal = Math. trunc((Math.pow(parseInt($expatual.value), 0.6) / Math.pow(parseInt($expmax.value), 0.6)) * parseInt($salariop.value))
+  }
+
+  if ($radioSalarioFixo.checked == true)
+  {
+  salarioreal = Math. trunc( parseInt($salariof.value) * (100-parseInt($imposto.value))/100 )
+  }
+
+
+  var salariodiario = salarioreal * 30 * 6 * parseInt($tempodisp.value)
+
+  alert(salarioreal);
+
+
+  var valorenergia = 0
+  if ($radioValorFixo.checked == true)
+  {
+  valorenergia = parseInt($valorenergia.value);
+  }
+
+  if ($radioValorCalc.checked == true)
+  {
+  valorenergia = Math. trunc( parseInt($qtdrecurso.value) * parseInt($precorecurso.value) )
+  }
+
+
+  var recenergia = 0;
+
+  switch (parseInt($indexsaude.value)) {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+      recenergia = 7;
+      break;
+    case 6:
+      recenergia = 8;
+      break;
+    case 7:
+      recenergia = 9;
+      break;
+    case 8:
+      recenergia = 10;
+      break;
+    case 9:
+      recenergia = 11;
+      break;
+    case 10:
+      recenergia = 12;
+      break;
+    case 11:
+      recenergia = 16;
+      break;
+    default:
+      recenergia = 0;
+      
+  }
+
+
+  var lucroenergia = (recenergia/10) * valorenergia;
+
+  var resultado = "Resultado: </br> Salário 300E (1 hit): $"+salarioreal+ "  Salario Médio Diário: $"+salariodiario+" <br/> Recuperação de energia: "+recenergia+" Valor 10E: $"+valorenergia+" Lucro 10min energia: $"+ lucroenergia+ "<br/>Total: "+(salariodiario+lucroenergia*6*24);
+
+  $result.innerHTML = resultado;
+});

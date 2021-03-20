@@ -4,22 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <title>Document</title>
+    <title>Calculadora de produtividade RR</title>
   </head>
   <body>
     <main class="container" style="display: flex; flex-direction: column">
-      <textarea class="input" placeholder="Input"></textarea>
-      <textarea class="values" placeholder="Valores"></textarea>
-      <div class="wrapper-input">
-        <input class="start-index" placeholder="Index inicial" value="0" />
-        <input class="jump" placeholder="Pulos" value="5" />
-        <input class="column" placeholder="Coluna" />
-      </div>
-      <div class='button-wrapper'>
+      <input type="radio" id="salarioperc" name="tipoSalario" value="Salário %">
+      <label for="salarioperc">Salario %</label><br>
+    <div class="wrapper-input">
+      <input class="salariop" placeholder="Salario Potencial 100%" hidden="true"  />
+      <input class="expatual" placeholder="Experiência de trabalho atual" hidden="true" />
+      <input class="expmax" placeholder="Experiência de trabalho máxima" hidden="true" />
+    </div>
+
+    <input type="radio" id="salariofixo" name="tipoSalario" value="Salário $">
+    <label for="salariofixo">Salario Fixo $</label><br>
+    <div class="wrapper-input">
+      <input class="salariof" placeholder="Valor do Salário $" hidden="true"  />
+      <input class="imposto" placeholder="Imposto da região" hidden="true" />
+    </div>
+
+    <input class="tempodisp" placeholder="Média de horas disponíveis por dia de gold" />
+    <input class="indexsaude" placeholder="Indice de Saúde" />
+
+
+    <input type="radio" id="valorfixo" name="valorenergia" value="Valor Fixo">
+    <label for="valorfixo">Valor Fixo 10E(1g)</label><br>
+
+    <input class="valorenergia" placeholder="Valor para 10E" hidden="true"  />
+
+
+    <input type="radio" id="valorcalc" name="valorenergia" value="Calcular Valor">
+    <label for="valorcalc">Calcular Valor 10E(1g)</label><br>
+    <div class="wrapper-input"></div>
+    <input class="qtdrecurso" placeholder="Quantidade de Recurso em 10E" hidden="true"  />
+    <input class="precorecurso" placeholder="Preço Médio de mercado 1 Recurso" hidden="true"  />
+    </div>
+
+ 
+
         <button class="button-process">Processar</button>
-        <button class="invert-button"><i class="fas fa-exchange-alt"></i></button>
-      </div>
-      <textarea class="output" placeholder="Output"></textarea>
+
+        <label id="result"></label>
     </main>
     
     <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"></script>
